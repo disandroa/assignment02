@@ -5,7 +5,7 @@ set -x
 
 POSTGRES_HOST=${POSTGRES_HOST:-localhost}
 POSTGRES_PORT=${POSTGRES_PORT:-5432}
-POSTGRES_NAME=${POSTGRES_NAME:-assn02}
+POSTGRES_NAME=${POSTGRES_NAME:-assignment02}
 POSTGRES_USER=${POSTGRES_USER:-postgres}
 POSTGRES_PASS=${POSTGRES_PASS:-postgres}
 PYTHON_COMMAND=${PYTHON_COMMAND:-python3}
@@ -53,20 +53,20 @@ PGPASSWORD=${POSTGRES_PASS} psql \
 run_psql -f "${SCRIPTDIR}/create_tables.sql"
 
 # Load trip gtfs data into database
-sed -i 's/\r//g' ${DATADIR}/google_bus/stops.txt
+# sed -i 's/\r//g' ${DATADIR}/google_bus/stops.txt
 run_psql -c "\copy septa.bus_stops FROM '${DATADIR}/google_bus/stops.txt' DELIMITER ',' CSV HEADER;"
 
 # Use sed to replace \r\n with \n in the google_bus/routes.txt file
-sed -i 's/\r//g' ${DATADIR}/google_bus/routes.txt
+# sed -i 's/\r//g' ${DATADIR}/google_bus/routes.txt
 run_psql -c "\copy septa.bus_routes FROM '${DATADIR}/google_bus/routes.txt' DELIMITER ',' CSV HEADER;"
 
-sed -i 's/\r//g' ${DATADIR}/google_bus/trips.txt
+# sed -i 's/\r//g' ${DATADIR}/google_bus/trips.txt
 run_psql -c "\copy septa.bus_trips FROM '${DATADIR}/google_bus/trips.txt' DELIMITER ',' CSV HEADER;"
 
-sed -i 's/\r//g' ${DATADIR}/google_bus/shapes.txt
+# sed -i 's/\r//g' ${DATADIR}/google_bus/shapes.txt
 run_psql -c "\copy septa.bus_shapes FROM '${DATADIR}/google_bus/shapes.txt' DELIMITER ',' CSV HEADER;"
 
-sed -i 's/\r//g' ${DATADIR}/google_rail/stops.txt
+# sed -i 's/\r//g' ${DATADIR}/google_rail/stops.txt
 run_psql -c "\copy septa.rail_stops FROM '${DATADIR}/google_rail/stops.txt' DELIMITER ',' CSV HEADER;"
 
 

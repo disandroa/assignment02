@@ -18,6 +18,10 @@ create table septa.bus_stops (
     wheelchair_boarding INTEGER
 );
 
+-- copy septa.bus_stops
+-- from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment02/__data__/bus_stops.csv'
+-- with (format csv, header true);
+
 drop table if exists septa.bus_routes;
 
 create table septa.bus_routes (
@@ -31,6 +35,10 @@ create table septa.bus_routes (
     route_color TEXT,
     route_text_color TEXT
 );
+
+-- copy septa.bus_routes
+-- from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment02/__data__/bus_routes.csv'
+-- with (format csv, header true);
 
 drop table if exists septa.bus_trips;
 create table septa.bus_trips (
@@ -46,6 +54,10 @@ create table septa.bus_trips (
     bikes_allowed INTEGER
 );
 
+-- copy septa.bus_trips
+-- from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment02/__data__/bus_trips.csv'
+-- with (format csv, header true);
+
 drop table if exists septa.bus_shapes;
 create table septa.bus_shapes (
     shape_id TEXT,
@@ -54,6 +66,10 @@ create table septa.bus_shapes (
     shape_pt_sequence INTEGER,
     shape_dist_traveled DOUBLE PRECISION
 );
+
+-- copy septa.bus_shapes
+-- from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment02/__data__/bus_shapes.csv'
+-- with (format csv, header true);
 
 drop table if exists septa.rail_stops;
 create table septa.rail_stops (
@@ -65,6 +81,10 @@ create table septa.rail_stops (
     zone_id TEXT,
     stop_url TEXT
 );
+
+-- copy septa.rail_stops
+-- from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment02/__data__/rail_stops.csv'
+-- with (format csv, header true);
 
 drop table if exists census.population_2020;
 create table census.population_2020 (

@@ -1,7 +1,7 @@
 /*
-  Which bus stop has the largest population within 800 meters? As a rough
-  estimation, consider any block group that intersects the buffer as being part
-  of the 800 meter buffer.
+  Which eight bus stops have the smallest population above 500 people inside of Philadelphia
+  within 800 meters of the stop (Philadelphia county block groups have a geoid prefix
+  of 42101 -- that's 42 for the state of PA, and 101 for Philadelphia county)?
 */
 
 with
@@ -19,7 +19,8 @@ septa_bus_stop_surrounding_population as (
         sum(pop.total) as estimated_pop_800m
     from septa_bus_stop_blockgroups as stops
     inner join census.population_2020 as pop using (geoid)
-    group by stops.stop_id
+    group by stops.stop_id, stops.geoid
+    having sum(pop.total) > 500 and stops.geoid like '1500000US42101%'
 )
 select
     stops.stop_name,
@@ -27,5 +28,5 @@ select
     stops.geog
 from septa_bus_stop_surrounding_population as pop
 inner join septa.bus_stops as stops using (stop_id)
-order by pop.estimated_pop_800m desc
+order by pop.estimated_pop_800m
 limit 8;

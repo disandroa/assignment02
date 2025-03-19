@@ -1,3 +1,4 @@
+-- Active: 1738184738894@@localhost@5432@assignment02
 /*
 
 This file contains the SQL commands to prepare the database for your queries.

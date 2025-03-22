@@ -214,7 +214,7 @@ There are several datasets that are prescribed for you to use in this part. Belo
 
     Discuss your accessibility metric and how you arrived at it below:
 
-    **Description:**
+    **Description:** At first, I thought I would just use a ratio of accessible stops (stops where wheelchair_boarding == 1) to total stops in a neighborhood, but I realized that there were many neighborhoods with all stops being labeled as accessible. I realized that accounting for neighborhood size may make this accessibility metric slightly better, so I included an accessible stop per sq km area score as well. I combined these two metrics into an accessibility indicator by normalizing the accessible stop per sq km area score (using min-max scaling) and then weighing both scores at 50% and adding them up.
 
 6.  What are the _top five_ neighborhoods according to your accessibility metric?
 

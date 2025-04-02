@@ -34,6 +34,7 @@ with busroute_shapes as (
         on trips.route_id = routes.route_id
     group by shapes.shape_id, trips.trip_headsign, routes.route_short_name
 )
+
 select
     route_short_name,
     trip_headsign,

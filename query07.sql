@@ -13,12 +13,14 @@ with hoodstops as (
         on st_intersects(hoods.geog, stops.geog)
     group by hoods.mapname
 ),
+
 hoodarea as (
     select
         hoods.mapname as neighborhood_name,
         st_area(hoods.geog) / 1000000 as area_km2
     from phl.neighborhoods as hoods
 ),
+
 scores as (
     select
         stops.neighborhood_name,
@@ -29,12 +31,14 @@ scores as (
     left join hoodarea
         on stops.neighborhood_name = hoodarea.neighborhood_name
 ),
+
 scaled_scores as (
     select
         scores.neighborhood_name,
         (scores.acsblstops_perarea - min(scores.acsblstops_perarea) over ()) * 1.0 / (max(scores.acsblstops_perarea) over () - min(scores.acsblstops_perarea) over ()) as scaled_acsblstops_perarea
     from scores
 )
+
 select
     scores.neighborhood_name,
     0.5 * scores.pct_accessible + 0.5 * scaled_scores.scaled_acsblstops_perarea as accessibility_metric,

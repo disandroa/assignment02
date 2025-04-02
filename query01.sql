@@ -13,6 +13,7 @@ septa_bus_stop_blockgroups as (
     inner join census.blockgroups_2020 as bg
         on st_dwithin(stops.geog, bg.geog, 800)
 ),
+
 septa_bus_stop_surrounding_population as (
     select
         stops.stop_id,
@@ -21,6 +22,7 @@ septa_bus_stop_surrounding_population as (
     inner join census.population_2020 as pop using (geoid)
     group by stops.stop_id
 )
+
 select
     stops.stop_name,
     pop.estimated_pop_800m,
